@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HistoryView: View{
     @StateObject var eventManager = EventDispatcher()
-    
+    var events: [Event] { eventManager.event.reversed() }
     var body: some View {
         VStack (alignment: .leading){
             HStack {
@@ -31,11 +31,33 @@ struct HistoryView: View{
                     ForEach(eventManager.event.reversed(), id: \.id){ event in
                         EventInfoBlock(e: event)
                     }
+                    
+                    var selectedVal = SettingsView.shared.$historyRange.wrappedValue
+                    ForEach(filterEventList(timeRange: selectedVal)) { event in
+                        EventInfoBlock(e: event)
+                    }
                 }
             }.frame(width: UIScreen.screenWidth)
         }
         
         
+    }
+    
+    // filter the events based on the user preferences
+    func filterEventList(timeRange: TimeRange) -> [Event]{
+        let afterDate = Calendar.current.date(byAdding: .day, value: (-1*timeRange.getDays()), to: Date()) ?? .distantPast
+        var filtered: [Event] = []
+        
+        if (timeRange == .all){
+            return events
+        } else {
+            for event in events {
+                if (event.eventTime > afterDate){
+                    filtered.append(event)
+                }
+            }
+        }
+        return filtered
     }
     
 }

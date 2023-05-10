@@ -7,13 +7,9 @@
 
 import SwiftUI
 
-//class SettingsModel: ObservableObject{
-//    @Published var subscribedLoc: Location = .hsinchu
-////    SettingsView.readFromUserDefault()
-//}
-
 struct SettingsView: View {
     @AppStorage("subscribedLoc") var subscribedLoc: Location = .taipei
+    @AppStorage("historyRange") var historyRange: TimeRange = .year
     public static let shared = SettingsView()
 
     var body: some View {
@@ -30,9 +26,18 @@ struct SettingsView: View {
                             }
                         }.navigationTitle("Settings")
                     }
+                    Section(header: Text("警報 Alert")){
+                        List {
+                            Picker("歷史紀錄顯示 History Time Range", selection: $historyRange){
+                                ForEach(TimeRange.allCases){ timeRange in
+                                    Text(timeRange.rawValue)
+                                }
+                            }
+                        }.navigationTitle("Settings")
+                    }
                 }
             }
-            Text("更改位置設定後必須將應用程式關閉後重新啟動（把App向上滑掉）").font(.system(size: 30)).multilineTextAlignment(.center).padding(.horizontal, 20.0)
+            Text("更改位置設定後必須將應用程式關閉後重新啟動（把App向上滑掉）").font(.system(size: 25)).multilineTextAlignment(.center).padding(.horizontal, 20.0)
         }
     }
 }

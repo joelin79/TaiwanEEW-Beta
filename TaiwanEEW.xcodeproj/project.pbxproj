@@ -29,6 +29,7 @@
 		C7AEEE3F29A0F951002471EF /* AlertStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AEEE3E29A0F951002471EF /* AlertStatusBar.swift */; };
 		C7AEEE4129A0FDC3002471EF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AEEE4029A0FDC3002471EF /* UIView.swift */; };
 		C7AEEE4329A37837002471EF /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AEEE4229A37837002471EF /* NetworkMonitor.swift */; };
+		C7CC14B72A0B8D4D00D91D56 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CC14B62A0B8D4D00D91D56 /* TimeRange.swift */; };
 		C7F73FCA29D18E090070265F /* ActiveStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F73FC929D18E090070265F /* ActiveStatusIndicator.swift */; };
 		C7F83460299E4B5E006E5953 /* EventError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F8345F299E4B5E006E5953 /* EventError.swift */; };
 		C7F83462299E5374006E5953 /* LocationBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F83461299E5374006E5953 /* LocationBlock.swift */; };
@@ -57,6 +58,7 @@
 		C7AEEE3E29A0F951002471EF /* AlertStatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertStatusBar.swift; sourceTree = "<group>"; };
 		C7AEEE4029A0FDC3002471EF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		C7AEEE4229A37837002471EF /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		C7CC14B62A0B8D4D00D91D56 /* TimeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
 		C7F73FC929D18E090070265F /* ActiveStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveStatusIndicator.swift; sourceTree = "<group>"; };
 		C7F8345F299E4B5E006E5953 /* EventError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventError.swift; sourceTree = "<group>"; };
 		C7F83461299E5374006E5953 /* LocationBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBlock.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				C775E0E728AF39E900D34920 /* Event.swift */,
 				C775E0E528AF36D000D34920 /* Location.swift */,
 				C7F8345F299E4B5E006E5953 /* EventError.swift */,
+				C7CC14B62A0B8D4D00D91D56 /* TimeRange.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			files = (
 				C7AEEE4129A0FDC3002471EF /* UIView.swift in Sources */,
 				C775E0D728AE637400D34920 /* TimeBlock.swift in Sources */,
+				C7CC14B72A0B8D4D00D91D56 /* TimeRange.swift in Sources */,
 				C775E0E828AF39E900D34920 /* Event.swift in Sources */,
 				C7F83460299E4B5E006E5953 /* EventError.swift in Sources */,
 				C7F73FCA29D18E090070265F /* ActiveStatusIndicator.swift in Sources */,
