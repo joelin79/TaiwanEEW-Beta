@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct HistoryView: View{
-    @StateObject var eventManager = EventDispatcher()
     
+    @StateObject var eventManager = EventDispatcher()
+//    @Binding var historyRange: TimeRange
     var events: [Event] { eventManager.event.reversed() }
+    
     var body: some View {
         VStack (alignment: .leading){
             HStack {
@@ -40,9 +42,10 @@ struct HistoryView: View{
                 }
             }.frame(width: UIScreen.screenWidth)
         }
-        
-        
     }
+    
+    
+    
     
     // filter the events based on the user preferences
     func filterEventList(timeRange: TimeRange) -> [Event]{

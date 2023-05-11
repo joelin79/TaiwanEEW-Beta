@@ -4,6 +4,8 @@
 //
 //  Created by Joe Lin on 2022/7/5.
 //
+//  This file contains the main entry point of the TaiwanEEW app.
+//
 
 import SwiftUI
 import Firebase
@@ -38,6 +40,7 @@ struct TaiwanEEWApp: App {
                     .tabItem {
                         Label("Settings", systemImage: "gear")
                     }
+                
             }
             
         }
