@@ -14,16 +14,11 @@ import Firebase
 @main
 struct TaiwanEEWApp: App {
     
+    @State var historyRange: TimeRange = .year
+    
     init(){
         FirebaseApp.configure()
     }
-    
-    /*
-    Global Variables
-     intensity: alert.intensity
-     seconds from arrival: -Int(Date().timeIntervalSince(arrivalTime))
-     */
-    
     
     var body: some Scene {
         WindowGroup {
@@ -32,11 +27,13 @@ struct TaiwanEEWApp: App {
                     .tabItem {
                         Label("Alert", systemImage: "exclamationmark.triangle")
                     }
-                HistoryView()
+                HistoryView(historyRange: $historyRange)
                     .tabItem {
                         Label("History", systemImage: "chart.bar.doc.horizontal")
                     }
-                SettingsView()
+                SettingsView(onHistoryRangeChanged: { newValue in
+                    historyRange = newValue
+                })
                     .tabItem {
                         Label("Settings", systemImage: "gear")
                     }

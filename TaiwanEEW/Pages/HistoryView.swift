@@ -10,8 +10,14 @@ import SwiftUI
 struct HistoryView: View{
     
     @StateObject var eventManager = EventDispatcher()
-//    @Binding var historyRange: TimeRange
-    var events: [Event] { eventManager.event.reversed() }
+    @Binding var historyRange: TimeRange
+    
+    // filter events by users preferences
+    var events: [Event] {
+        eventManager.event.reversed().filter { event in
+            event.eventTime > Calendar.current.date(byAdding: .day, value: (-1*historyRange.getDays()), to: Date()) ?? .distantPast
+        }
+    }
     
     var body: some View {
         VStack (alignment: .leading){
@@ -31,43 +37,17 @@ struct HistoryView: View{
             
             ScrollView {
                 VStack {
-                    ForEach(eventManager.event.reversed(), id: \.id){ event in
-                        EventInfoBlock(e: event)
-                    }
-                    
-                    let selectedVal = SettingsView.shared.$historyRange.wrappedValue
-                    ForEach(filterEventList(timeRange: selectedVal)) { event in
+                    ForEach(events, id: \.id){ event in
                         EventInfoBlock(e: event)
                     }
                 }
             }.frame(width: UIScreen.screenWidth)
         }
     }
-    
-    
-    
-    
-    // filter the events based on the user preferences
-    func filterEventList(timeRange: TimeRange) -> [Event]{
-        let afterDate = Calendar.current.date(byAdding: .day, value: (-1*timeRange.getDays()), to: Date()) ?? .distantPast
-        var filtered: [Event] = []
-        
-        if (timeRange == .all){
-            return events
-        } else {
-            for event in events {
-                if (event.eventTime > afterDate){
-                    filtered.append(event)
-                }
-            }
-        }
-        return filtered
-    }
-    
 }
 
-struct HistoryView_Preview: PreviewProvider {
-    static var previews: some View {
-        HistoryView()
-    }
-}
+//struct HistoryView_Preview: PreviewProvider {
+//    static var previews: some View {
+//        HistoryView(historyRange: timeRange.projected)
+//    }
+//}

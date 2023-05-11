@@ -10,6 +10,8 @@ import SwiftUI
 struct SettingsView: View {
     @AppStorage("subscribedLoc") var subscribedLoc: Location = .taipei
     @AppStorage("historyRange") var historyRange: TimeRange = .year
+    var onHistoryRangeChanged: ((TimeRange) -> Void)?
+    
     public static let shared = SettingsView()
 
     var body: some View {
@@ -34,6 +36,10 @@ struct SettingsView: View {
                             }
                         }
                     }
+                    .onChange(of: historyRange) { value in
+                        onHistoryRangeChanged?(value)
+                    }
+                    
                 }.navigationBarTitle("設定 Settings")
             }
             Text("更改位置設定後必須將應用程式關閉後重新啟動（把App向上滑掉）").font(.system(size: 25)).multilineTextAlignment(.center).padding(.horizontal, 20.0)

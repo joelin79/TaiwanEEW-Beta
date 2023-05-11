@@ -40,7 +40,7 @@ enum TimeRange: String, CaseIterable, Identifiable, Codable{
         case .year:
             return 365
         case .all:
-            return 0
+            return 9999
         }
     }
 }
