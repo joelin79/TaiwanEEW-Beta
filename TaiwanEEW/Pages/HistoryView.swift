@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HistoryView: View{
     @StateObject var eventManager = EventDispatcher()
+    
     var events: [Event] { eventManager.event.reversed() }
     var body: some View {
         VStack (alignment: .leading){
@@ -32,7 +33,7 @@ struct HistoryView: View{
                         EventInfoBlock(e: event)
                     }
                     
-                    var selectedVal = SettingsView.shared.$historyRange.wrappedValue
+                    let selectedVal = SettingsView.shared.$historyRange.wrappedValue
                     ForEach(filterEventList(timeRange: selectedVal)) { event in
                         EventInfoBlock(e: event)
                     }
