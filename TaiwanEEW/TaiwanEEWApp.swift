@@ -25,11 +25,11 @@ struct TaiwanEEWApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                AlertView(subscribedLoc: $subscribedLoc)
+                AlertView(eventManager: EventDispatcher(subscribedLoc: $subscribedLoc), historyRange: $historyRange, subscribedLoc: $subscribedLoc)
                     .tabItem {
                         Label("Alert", systemImage: "exclamationmark.triangle")
                     }
-                HistoryView(historyRange: $historyRange)
+                HistoryView(eventManager: EventDispatcher(subscribedLoc: $subscribedLoc), historyRange: $historyRange, subscribedLoc: $subscribedLoc)
                     .tabItem {
                         Label("History", systemImage: "chart.bar.doc.horizontal")
                     }

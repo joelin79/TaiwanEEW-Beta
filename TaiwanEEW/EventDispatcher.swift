@@ -9,6 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Firebase
+import SwiftUI
 
 class EventDispatcher: ObservableObject{
     @Published private(set) var event: [Event] = []
@@ -17,8 +18,12 @@ class EventDispatcher: ObservableObject{
     @Published private(set) var publishedTime: Date = Date(timeIntervalSince1970: 0)
     @Published private(set) var intensity: String = "0"
     
+    var subscribedLoc: Binding<Location>
+    
     let db = Firestore.firestore()
-    init() {
+    
+    init(subscribedLoc: Binding<Location>) {
+        self.subscribedLoc = subscribedLoc
         getEvents()
     }
     

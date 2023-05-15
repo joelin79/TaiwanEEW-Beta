@@ -9,8 +9,11 @@ import SwiftUI
 
 struct AlertView: View {
     // Instance
-    @StateObject var eventManager = EventDispatcher()
+    @StateObject var eventManager: EventDispatcher
+    // binding from @main
+    @Binding var historyRange: TimeRange
     @Binding var subscribedLoc: Location
+    
     var publishedTime: Date {eventManager.publishedTime}
     var arrivalTime: Date {eventManager.arrivalTime}
     var intensity: String {eventManager.intensity}
