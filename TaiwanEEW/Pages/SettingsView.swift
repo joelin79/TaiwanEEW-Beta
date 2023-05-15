@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("subscribedLoc") var subscribedLoc: Location = .taipei
-    @AppStorage("historyRange") var historyRange: TimeRange = .year
+    @AppStorage("locSelection") var locSelection: Location = .taipei
+    @AppStorage("HRSelection") var HRSelection: TimeRange = .year
     var onHistoryRangeChanged: ((TimeRange) -> Void)?
     var onSubscribedLocChanged: ((Location) -> Void)?
     /*
@@ -27,25 +27,25 @@ struct SettingsView: View {
                 Form {
                     Section(header: Text("警報 Alerts")){
                         List {
-                            Picker("位置 Location", selection: $subscribedLoc){
+                            Picker("位置 Location", selection: $locSelection){
                                 ForEach(Location.allCases){ location in
                                     Text(location.rawValue)
                                 }
                             }
                         }
-                    }.onChange(of: subscribedLoc) { value in
+                    }.onChange(of: locSelection) { value in
                         onSubscribedLocChanged?(value)
                     }
                     Section(header: Text("歷史 History")){
                         List {
-                            Picker("歷史紀錄顯示 History Time Range", selection: $historyRange){
+                            Picker("歷史紀錄顯示 History Time Range", selection: $HRSelection){
                                 ForEach(TimeRange.allCases){ timeRange in
                                     Text(timeRange.rawValue)
                                 }
                             }
                         }
                     }
-                    .onChange(of: historyRange) { value in
+                    .onChange(of: HRSelection) { value in
                         onHistoryRangeChanged?(value)
                     }
                     

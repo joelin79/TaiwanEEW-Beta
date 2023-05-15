@@ -15,8 +15,8 @@ import Firebase
 struct TaiwanEEWApp: App {
     
     // selection variables accessable between views
-    @State var historyRange: TimeRange = .year
-    @State var subscribedLoc: Location = .taipei
+    @AppStorage("historyRange") var historyRange: TimeRange = .year
+    @AppStorage("subscribedLoc") var subscribedLoc: Location = .taipei
     
     init(){
         FirebaseApp.configure()
