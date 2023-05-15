@@ -14,7 +14,9 @@ import Firebase
 @main
 struct TaiwanEEWApp: App {
     
+    // selection variables accessable between views
     @State var historyRange: TimeRange = .year
+    @State var subscribedLoc: Location = .taipei
     
     init(){
         FirebaseApp.configure()
@@ -23,7 +25,7 @@ struct TaiwanEEWApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                AlertView()
+                AlertView(subscribedLoc: $subscribedLoc)
                     .tabItem {
                         Label("Alert", systemImage: "exclamationmark.triangle")
                     }
@@ -31,8 +33,12 @@ struct TaiwanEEWApp: App {
                     .tabItem {
                         Label("History", systemImage: "chart.bar.doc.horizontal")
                     }
-                SettingsView(onHistoryRangeChanged: { newValue in
+                SettingsView(
+                    onHistoryRangeChanged: { newValue in
                     historyRange = newValue
+                }, onSubscribedLocChanged: {
+                    newValue in
+                    subscribedLoc = newValue
                 })
                     .tabItem {
                         Label("Settings", systemImage: "gear")

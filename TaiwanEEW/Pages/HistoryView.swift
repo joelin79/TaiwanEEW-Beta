@@ -10,6 +10,7 @@ import SwiftUI
 struct HistoryView: View{
     
     @StateObject var eventManager = EventDispatcher()
+    // binding from @main
     @Binding var historyRange: TimeRange
     
     // filter events by users preferences

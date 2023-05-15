@@ -10,6 +10,7 @@ import SwiftUI
 struct AlertView: View {
     // Instance
     @StateObject var eventManager = EventDispatcher()
+    @Binding var subscribedLoc: Location
     var publishedTime: Date {eventManager.publishedTime}
     var arrivalTime: Date {eventManager.arrivalTime}
     var intensity: String {eventManager.intensity}
@@ -22,7 +23,7 @@ struct AlertView: View {
     
     var pageInfo: some View {
         Group {
-            LocationBlock().offset(x:UIScreen.baseLine, y:10)
+            LocationBlock(subscribedLoc: subscribedLoc).offset(x:UIScreen.baseLine, y:10)
             
             Group {
                 Text("地震緊急速報").font(.largeTitle.bold())
@@ -75,8 +76,8 @@ struct AlertView: View {
     }
 }
 
-struct AlertView_Previews: PreviewProvider {
-    static var previews: some View {
-        AlertView()
-    }
-}
+//struct AlertView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AlertView()
+//    }
+//}

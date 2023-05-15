@@ -11,6 +11,13 @@ struct SettingsView: View {
     @AppStorage("subscribedLoc") var subscribedLoc: Location = .taipei
     @AppStorage("historyRange") var historyRange: TimeRange = .year
     var onHistoryRangeChanged: ((TimeRange) -> Void)?
+    var onSubscribedLocChanged: ((Location) -> Void)?
+    /*
+     1. Selection in menu triggers the onChange
+     2. onChange passes the new val into the onHistoryRangeChanged closure
+     3. The closure, defined in @main, updates the var accessable between views
+     */
+    
     
     public static let shared = SettingsView()
 
@@ -26,6 +33,8 @@ struct SettingsView: View {
                                 }
                             }
                         }
+                    }.onChange(of: subscribedLoc) { value in
+                        onSubscribedLocChanged?(value)
                     }
                     Section(header: Text("歷史 History")){
                         List {

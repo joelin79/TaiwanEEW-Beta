@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LocationBlock: View {
-    
+    var subscribedLoc: Location
     var locationCH = [
         Location.taipei : "台北市",
         Location.hsinchu : "新竹市" ,
@@ -26,7 +26,7 @@ struct LocationBlock: View {
                 .frame(width: 100.0, height: 40.0)
                 .clipped()
                 .cornerRadius(15.0)
-            Text(locationCH[ SettingsView.shared.subscribedLoc]!)
+            Text(locationCH[subscribedLoc]!)
                 .foregroundColor(Color("Pad"))
                 .font(Font.system(size: 20, design: .default).weight(.medium))
         }
@@ -35,8 +35,8 @@ struct LocationBlock: View {
     
 }
 
-struct LocationBlock_Previews: PreviewProvider {
-    static var previews: some View {
-        LocationBlock()
-    }
-}
+//struct LocationBlock_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LocationBlock()
+//    }
+//}
