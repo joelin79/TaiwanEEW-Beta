@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HistoryView: View{
     
-    @StateObject var eventManager: EventDispatcher
+    @ObservedObject var eventManager: EventDispatcher
     // binding from @main
     @Binding var historyRange: TimeRange
     @Binding var subscribedLoc: Location

@@ -27,10 +27,12 @@ class EventDispatcher: ObservableObject{
         getEvents()
     }
     
+    
+    
     func getEvents(){
         
         // listening the collection of the selected location
-        db.collection(SettingsView.shared.locSelection.rawValue).addSnapshotListener { querySnapshot, error in
+        db.collection(subscribedLoc.wrappedValue.rawValue).addSnapshotListener { querySnapshot, error in
             
             // fetch documents into the "documents" array
             guard let documents = querySnapshot?.documents else {
