@@ -39,7 +39,6 @@ class EventDispatcher: ObservableObject{
             }
             
             // then decode documents into a compactMap of type Event array, and store into event
-            
             self.event = documents.compactMap { document -> Event? in
                 do {
                     return try document.data(as: Event.self)
@@ -52,11 +51,6 @@ class EventDispatcher: ObservableObject{
             // sort Event by eventTime
             self.event.sort { $0.eventTime < $1.eventTime }
             
-            // set lastEventId
-//            if let id = self.event.last?.id {
-//                self.lastEventId = id
-//            }
-            
             // set variables
             if let lastEvent = self.event.last,
                 let arrivalTime = Calendar.current.date(byAdding: .second, value: lastEvent.seconds, to: lastEvent.eventTime)
@@ -65,11 +59,6 @@ class EventDispatcher: ObservableObject{
                 self.publishedTime = lastEvent.eventTime
                 self.intensity = lastEvent.intensity
             }
-            
-            // set intensity
-//            if let intensity = self.event.last?.intensity {
-//                self.intensity = intensity
-//            }
         }
     }
     
