@@ -1,0 +1,53 @@
+// Alert Page
+"alert-title-string" = "地震速報監測";
+"%@ publish-string" = "%@ 發表";
+"est-arrival-time-string" = "預計抵達時間";
+
+// History Rage
+"history-title-string" = "測報歷史紀錄";
+
+// Settings Page
+"alerts-pref-string" = "警報設定";
+"location-pref-string" = "警報位置";
+"history-pref-string" = " 歷史設定";
+"history-time-range-string" = "歷史記錄顯示";
+
+// Status
+"loading-string" = "載入中...";
+"alert-status-1-string" = "目前無發布地震資訊";
+"alert-status-2-string" = "地 震 通 報 發 表 中";
+"alert-status-3-string" = "緊 急 地 震 速 報";
+
+// Intensity Block
+"intensity-string" = "預估級數";
+"intensity-sub-string" = "級";
+
+// Time Block
+"arrival-string" = "抵達";
+"seconds-string" = "秒";
+
+// Event Info Block
+"est-intensity-string" = "預測級數";
+"time-string" = "發生時間";
+"est-countdown-string" = "預測倒數";
+
+// Active Status Indicator
+"active-string" = "新警報";
+
+// Locations
+"taipei-string" = "台北市";
+"hsinchu-string" = "新竹市";
+"taichung-string" = "台中市";
+"kaohsiung-string" = "高雄市";
+"pingtung-string" = "屏東縣";
+"taitung-string" = "台東縣";
+"hualian-string" = "花蓮縣";
+"yilan-string" = "宜蘭縣";
+
+// TimeRange
+"week-string" = "7 天";
+"twoweek-string" = "2 週";
+"month-string" = "1 月";
+"sixmonth-string" = "6 月";
+"year-string" = "1 年";
+"all-string" = "全部";

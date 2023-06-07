@@ -11,7 +11,7 @@ struct AlertView: View {
     // Instance
     @ObservedObject var eventManager: EventDispatcher
     // binding from @main
-    @Binding var historyRange: TimeRange
+//    @Binding var historyRange: TimeRange
     @Binding var subscribedLoc: Location
     
     var publishedTime: Date {eventManager.publishedTime}
@@ -29,10 +29,10 @@ struct AlertView: View {
             LocationBlock(subscribedLoc: subscribedLoc).offset(x:UIScreen.baseLine, y:10)
             
             Group {
-                Text("地震緊急速報").font(.largeTitle.bold())
+                Text("alert-title-string").font(.largeTitle.bold())
                     .foregroundColor(.black)
             }.offset(x:30)
-            Text("\(dateFormatter.string(from: publishedTime)) 發表")
+            Text("\(dateFormatter.string(from: publishedTime)) publish-string")
                 .padding(.bottom, 20.0)
                 .offset(x: UIScreen.baseLine, y:5)
         }
@@ -55,7 +55,7 @@ struct AlertView: View {
             HStack (alignment: .center) {
                 ZStack {
                     Rectangle().frame(width: 170.0, height: 40.0).clipped().cornerRadius(/*@START_MENU_TOKEN@*/7.0/*@END_MENU_TOKEN@*/).foregroundColor(Color("Pad"))
-                    Text("預計抵達時間").font(.system(size:20))
+                    Text("est-arrival-time-string").font(.system(size:20))
                 }
                 Text(dateFormatter.string(from: arrivalTime)).font(.system(size: 20))
             }
@@ -79,8 +79,12 @@ struct AlertView: View {
     }
 }
 
-//struct AlertView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AlertView()
-//    }
-//}
+struct AlertView_Previews: PreviewProvider {
+    @State static var testLoc = Location.hsinchu
+    
+    static var previews: some View {
+        AlertView(eventManager: EventDispatcher(subscribedLoc: $testLoc), subscribedLoc: $testLoc).environment(\.locale, Locale.init(identifier: "en"))
+        
+        AlertView(eventManager: EventDispatcher(subscribedLoc: $testLoc), subscribedLoc: $testLoc).environment(\.locale, Locale.init(identifier: "zh-Hant"))
+    }
+}

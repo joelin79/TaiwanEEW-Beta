@@ -25,22 +25,22 @@ struct SettingsView: View {
         VStack {
             NavigationView {
                 Form {
-                    Section(header: Text("警報 Alerts")){
+                    Section(header: Text("alerts-pref-string")){
                         List {
-                            Picker("位置 Location", selection: $locSelection){
+                            Picker("location-pref-string", selection: $locSelection){
                                 ForEach(Location.allCases){ location in
-                                    Text(location.rawValue)
+                                    Text(location.getDisplayName())
                                 }
                             }
                         }
                     }.onChange(of: locSelection) { value in
                         onSubscribedLocChanged?(value)
                     }
-                    Section(header: Text("歷史 History")){
+                    Section(header: Text("history-pref-string")){
                         List {
-                            Picker("歷史紀錄顯示 History Time Range", selection: $HRSelection){
+                            Picker("history-time-range-string", selection: $HRSelection){
                                 ForEach(TimeRange.allCases){ timeRange in
-                                    Text(timeRange.rawValue)
+                                    Text(timeRange.getDisplayName())
                                 }
                             }
                         }
@@ -48,10 +48,8 @@ struct SettingsView: View {
                     .onChange(of: HRSelection) { value in
                         onHistoryRangeChanged?(value)
                     }
-                    
                 }.navigationBarTitle("設定 Settings")
             }
-            Text("更改位置設定後必須將應用程式關閉後重新啟動（把App向上滑掉）").font(.system(size: 25)).multilineTextAlignment(.center).padding(.horizontal, 20.0)
         }
     }
 }

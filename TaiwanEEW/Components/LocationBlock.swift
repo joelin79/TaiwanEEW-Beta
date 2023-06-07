@@ -10,14 +10,14 @@ import SwiftUI
 struct LocationBlock: View {
     var subscribedLoc: Location
     var locationCH = [
-        Location.taipei : "台北市",
-        Location.hsinchu : "新竹市" ,
-        Location.taichung : "台中市" ,
-        Location.kaohsiung : "高雄市" ,
-        Location.pingtung : "屏東縣" ,
-        Location.taitung : "台東縣" ,
-        Location.hualian : "花蓮縣" ,
-        Location.yilan : "宜蘭縣" ,
+        Location.taipei : LocalizedStringKey("taipei-string"),
+        Location.hsinchu : LocalizedStringKey("hsinchu-string") ,
+        Location.taichung : LocalizedStringKey("taichung-string") ,
+        Location.kaohsiung : LocalizedStringKey("kaohsiung-string") ,
+        Location.pingtung : LocalizedStringKey("pingtung-string") ,
+        Location.taitung : LocalizedStringKey("taitung-string") ,
+        Location.hualian : LocalizedStringKey("hualian-string") ,
+        Location.yilan : LocalizedStringKey("yilan-sttring") ,
     ]
     
     var body: some View {

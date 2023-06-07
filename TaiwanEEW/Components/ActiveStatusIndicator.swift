@@ -19,7 +19,7 @@ struct ActiveStatusIndicator: View{
                     Spacer()
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundColor(.white)
-                    Text("新警報")
+                    Text("active-string")
                         .foregroundColor(.white)
                     Spacer()
                 }

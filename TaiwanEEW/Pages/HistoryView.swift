@@ -24,7 +24,7 @@ struct HistoryView: View{
     var body: some View {
         VStack (alignment: .leading){
             HStack {
-                Text("測報歷史紀錄")
+                Text("history-title-string")
                     .font(.largeTitle)
                     .bold()
                 .padding(.all)

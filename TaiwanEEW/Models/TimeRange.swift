@@ -6,24 +6,26 @@
 //
 
 import Foundation
+import SwiftUI
+
 enum TimeRange: String, CaseIterable, Identifiable, Codable{
     case week, twoweek, month, sixmonth, year, all
     var id: Self { self }
     
-    func getDisplayName() -> String {
+    func getDisplayName() -> LocalizedStringKey {
         switch self {
         case .week:
-            return "7天 7 Days"
+            return LocalizedStringKey("week-string")
         case .twoweek:
-            return "兩週 2 weeks"
+            return LocalizedStringKey("twoweek-string")
         case .month:
-            return "一個月 1 month"
+            return LocalizedStringKey("month-string")
         case .sixmonth:
-            return "六個月 6 months"
+            return LocalizedStringKey("sixmonth-string")
         case .year:
-            return "一年 1 year"
+            return LocalizedStringKey("year-string")
         case .all:
-            return "全部 All"
+            return LocalizedStringKey("all-string")
         }
     }
     

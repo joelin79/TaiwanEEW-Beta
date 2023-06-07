@@ -23,7 +23,7 @@ struct TimeBlock: View {
             .clipped()
             .overlay(
                 VStack{
-                    Text("抵達")
+                    Text("arrival-string")
                         .font(Font.system(.largeTitle, design: .default).weight(.medium))
                     HStack(alignment: .bottom){
                         Text( (calcEstTime()>0) ? String(text) : "0")
@@ -33,7 +33,7 @@ struct TimeBlock: View {
                                     self.text = String(calcEstTime())
                                 }
                             )
-                        Text("秒")
+                        Text("seconds-string")
                             .font(.system(size: 30, weight: .bold, design: .monospaced ))
                     }
                 }

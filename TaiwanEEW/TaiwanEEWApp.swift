@@ -25,7 +25,7 @@ struct TaiwanEEWApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                AlertView(eventManager: EventDispatcher(subscribedLoc: $subscribedLoc), historyRange: $historyRange, subscribedLoc: $subscribedLoc)
+                AlertView(eventManager: EventDispatcher(subscribedLoc: $subscribedLoc), subscribedLoc: $subscribedLoc)
                     .tabItem {
                         Label("Alert", systemImage: "exclamationmark.triangle")
                     }

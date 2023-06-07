@@ -18,6 +18,10 @@ struct AlertStatusBar : View {
     @State private var isMajor: Bool = false
     @State private var isUpdated: Bool = false     // used to indicate if arrivalTime is updated to non-default value (1970/1/1)
     
+    var strLocL = NSLocalizedString("loading-string", comment: "")
+    var strLoc1 = NSLocalizedString( "alert-status-1-string", comment: "")
+    var strLoc2 = NSLocalizedString( "alert-status-2-string", comment: "")
+    var strLoc3 = NSLocalizedString( "alert-status-3-string", comment: "")
     
     var body: some View {
         Rectangle()
@@ -30,7 +34,7 @@ struct AlertStatusBar : View {
             .clipped()
             .overlay(
         // Text
-                StrokeText(text: (isUpdated) ? (isAlert) ? (isMajor) ? "緊 急 地 震 速 報" : "地 震 通 報 發 表 中" : "目前無發布地震資訊" : "載入中...", width: (isMajor) ? 0.75 : 0 , color: .black)
+                StrokeText(text: (isUpdated) ? (isAlert) ? (isMajor) ? strLoc3 : strLoc2 : strLoc1 : strLocL , width: (isMajor) ? 0.75 : 0 , color: .black)
                     .foregroundColor( (isMajor) ? .white : .black)
                     .font(.system(size: 28).bold().monospaced())
         // Opacity Animation
@@ -63,7 +67,7 @@ struct AlertStatusBar : View {
         if arrivalTime > Date(timeIntervalSince1970: 1000){
             isUpdated = true
         } else {
-            isUpdated = false       // FYI: AlertView defaults arrivalTime value to 1970/1/1 before firebase is connected
+            isUpdated = false       // Note: AlertView defaults arrivalTime value to 1970/1/1 before firebase is connected
         }
         
         // updates isMajor
@@ -109,7 +113,7 @@ struct StrokeText: View {
 
 struct AlertStatusBar_Preview : PreviewProvider {
     static var previews: some View {
-        AlertStatusBar(arrivalTime: Date(), intensity: "3")
+        AlertStatusBar(arrivalTime: Date(), intensity: "5-").environment(\.locale, Locale.init(identifier: "zh-Hant"))
     }
     
 }

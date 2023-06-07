@@ -26,13 +26,16 @@ struct IntensityBlock: View {
     var content: some View {
         Group {
             VStack{
-                Text("預估震度")
+                Text("intensity-string")
                     .font(Font.system(.largeTitle, design: .default).weight(.medium))
                 HStack(alignment: .bottom){
                     Text(intensity)
                         .font(.system(size: 80, weight: .bold, design: .monospaced)).foregroundColor(Color(intensity))
-                    Text("級")
-                        .font(.system(size: 30, weight: .bold, design: .monospaced))
+                    // TODO: Fix the subscript translation
+//                    if !"intensity-sub-string".isEmpty {
+                        Text(String(localized:"intensity-sub-string"))
+                            .font(.system(size: 30, weight: .bold, design: .monospaced))
+//                    }
                 }
                 
             }
@@ -42,6 +45,7 @@ struct IntensityBlock: View {
 
 struct IntensityBlock_Previews: PreviewProvider {
     static var previews: some View {
-        IntensityBlock(intensity: "4")
+        IntensityBlock(intensity: "4").environment(\.locale, Locale.init(identifier: "en"))
+        IntensityBlock(intensity: "4").environment(\.locale, Locale.init(identifier: "zh-Hant"))
     }
 }

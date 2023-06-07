@@ -28,7 +28,7 @@ struct EventInfoBlock: View{
                 HStack{
                     Spacer()
                     VStack {
-                        Text("預測級數").foregroundColor(.secondary)
+                        Text("est-intensity-string").foregroundColor(.secondary)
                             .bold()
                         Text(e.intensity)
                             .font(.system(size: 32))
@@ -40,11 +40,11 @@ struct EventInfoBlock: View{
                     
                     VStack (alignment: .leading){
                         Spacer()
-                        Text("發生時間").foregroundColor(.secondary)
+                        Text("time-string").foregroundColor(.secondary)
                         Text(e.eventTime.formatted())
                         Spacer()
                         HStack {
-                            Text("預測倒數").foregroundColor(.secondary)
+                            Text("est-countdown-string").foregroundColor(.secondary)
                             Text(String(e.seconds))
                         }
                         Spacer()

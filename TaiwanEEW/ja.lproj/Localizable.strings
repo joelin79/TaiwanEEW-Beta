@@ -1,0 +1,53 @@
+// Alert Page
+"alert-title-string" = "地震速報監視";
+"%@ publish-string" = "%@ 発表";
+"est-arrival-time-string" = "到着予定時刻";
+
+// History Rage
+"history-title-string" = "予測履歴";
+
+// Settings Page
+"alerts-pref-string" = "アラーム設定";
+"location-pref-string" = "警報位置";
+"history-pref-string" = " 履歴設定";
+"history-time-range-string" = "履歴の表示";
+
+//
+"loading-string" = "読み込み中...";
+"alert-status-1-string" = "地震情報はありません";
+"alert-status-2-string" = "地 震 情 報";
+"alert-status-3-string" = "緊 急 地 震 速 報";
+
+// Intensity Block
+"intensity-string" = "推定震度";
+"intensity-sub-string" = "級";
+
+// Time Block
+"arrival-string" = "到着";
+"seconds-string" = "秒";
+
+// Event Info Block
+"est-intensity-string" = "推定震度";
+"time-string" = "発生時間";
+"est-countdown-string" = "推定倒數";
+
+// Active Status Indicator
+"active-string" = "新警報";
+
+// Locations
+"taipei-string" = "台北市";
+"hsinchu-string" = "新竹市";
+"taichung-string" = "台中市";
+"kaohsiung-string" = "高雄市";
+"pingtung-string" = "屏東県";
+"taitung-string" = "台東県";
+"hualian-string" = "花蓮県";
+"yilan-string" = "宜蘭県";
+
+// TimeRange
+"week-string" = "7 天";
+"twoweek-string" = "2 週";
+"month-string" = "1 月";
+"sixmonth-string" = "6 月";
+"year-string" = "1 年";
+"all-string" = "すべて表示";
