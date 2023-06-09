@@ -1,3 +1,11 @@
+// Terms of Use
+"term-title-string" = "免責聲明";
+"term1-string" = "【地震無法預測】，任何資訊均以中央氣象局(CWB)發布之內容為準。";
+"term2-string" = "強震即時警報是利用少數幾個地震測站快速演算之結果，與最終地震報告可能存有若干差異，請理解並謹慎使用。";
+"term3-string" = "測報可能誤報，請勿散播資訊，保持公共秩序，避免觸法。";
+"term4-string" = "若您開始使用本軟體，表示您已同意以上條款。";
+"dismiss-string" = "開始使用";
+
 // Alert Page
 "alert-title-string" = "地震速報監測";
 "%@ publish-string" = "%@ 發表";

@@ -1,3 +1,11 @@
+// Terms of Use
+"term-title-string" = "Disclaimer";
+"term1-string" = "〔Earthquakes are unpredictable〕 Any information should be based on the official announcements from the Central Weather Bureau (CWB).";
+"term2-string" = "The earthquake early warning system, based on rapid calculations from a few seismic stations, may differ from the final earthquake report. Please exercise caution when using it.";
+"term3-string" = "False alarms are possible. Please refrain from disseminating information, maintain public order, and ensure compliance with the law.";
+"term4-string" = "If you start using this software, it signifies your agreement to the aforementioned terms.";
+"dismiss-string" = "Start";
+
 // Alert Page
 "alert-title-string" = "Earthquake Watch";
 "%@ publish-string" = "%@ Last Published";

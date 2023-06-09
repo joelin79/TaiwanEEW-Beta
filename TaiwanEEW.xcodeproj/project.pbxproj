@@ -31,6 +31,9 @@
 		C7AEEE4129A0FDC3002471EF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AEEE4029A0FDC3002471EF /* UIView.swift */; };
 		C7AEEE4329A37837002471EF /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AEEE4229A37837002471EF /* NetworkMonitor.swift */; };
 		C7CC14B72A0B8D4D00D91D56 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CC14B62A0B8D4D00D91D56 /* TimeRange.swift */; };
+		C7CDE7242A31695E0032BEE0 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C7CDE7232A31695E0032BEE0 /* FirebaseMessaging */; };
+		C7CDE7262A316CDF0032BEE0 /* FirstLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDE7252A316CDF0032BEE0 /* FirstLaunchView.swift */; };
+		C7CDE7282A318DD50032BEE0 /* SheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDE7272A318DD50032BEE0 /* SheetManager.swift */; };
 		C7F73FCA29D18E090070265F /* ActiveStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F73FC929D18E090070265F /* ActiveStatusIndicator.swift */; };
 		C7F83460299E4B5E006E5953 /* EventError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F8345F299E4B5E006E5953 /* EventError.swift */; };
 		C7F83462299E5374006E5953 /* LocationBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F83461299E5374006E5953 /* LocationBlock.swift */; };
@@ -63,6 +66,9 @@
 		C7AEEE4029A0FDC3002471EF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		C7AEEE4229A37837002471EF /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		C7CC14B62A0B8D4D00D91D56 /* TimeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
+		C7CDE7222A31678A0032BEE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C7CDE7252A316CDF0032BEE0 /* FirstLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchView.swift; sourceTree = "<group>"; };
+		C7CDE7272A318DD50032BEE0 /* SheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetManager.swift; sourceTree = "<group>"; };
 		C7F73FC929D18E090070265F /* ActiveStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveStatusIndicator.swift; sourceTree = "<group>"; };
 		C7F8345F299E4B5E006E5953 /* EventError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventError.swift; sourceTree = "<group>"; };
 		C7F83461299E5374006E5953 /* LocationBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBlock.swift; sourceTree = "<group>"; };
@@ -74,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7CDE7242A31695E0032BEE0 /* FirebaseMessaging in Frameworks */,
 				0C43DFA9D773C19DBB232266 /* Pods_TaiwanEEW.framework in Frameworks */,
 				C775E0E228AE6EBE00D34920 /* FirebaseFirestore in Frameworks */,
 				C775E0E428AE6EBE00D34920 /* FirebaseFirestoreSwift in Frameworks */,
@@ -121,9 +128,11 @@
 		B40038EE28743FAB0095D49F /* TaiwanEEW */ = {
 			isa = PBXGroup;
 			children = (
+				C7CDE7222A31678A0032BEE0 /* Info.plist */,
 				B40038EF28743FAB0095D49F /* TaiwanEEWApp.swift */,
 				C775E0DE28AE654700D34920 /* EventDispatcher.swift */,
 				C7AEEE4229A37837002471EF /* NetworkMonitor.swift */,
+				C7CDE7272A318DD50032BEE0 /* SheetManager.swift */,
 				C775E0DD28AE64F500D34920 /* Pages */,
 				C775E0D328AE629600D34920 /* Components */,
 				C775E0DC28AE64E100D34920 /* Models */,
@@ -177,6 +186,7 @@
 				B442768B2878720F00B57E92 /* SettingsView.swift */,
 				B40038F128743FAB0095D49F /* AlertView.swift */,
 				C766813E299BC98B00EE9D7C /* HistoryView.swift */,
+				C7CDE7252A316CDF0032BEE0 /* FirstLaunchView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -201,6 +211,7 @@
 			packageProductDependencies = (
 				C775E0E128AE6EBE00D34920 /* FirebaseFirestore */,
 				C775E0E328AE6EBE00D34920 /* FirebaseFirestoreSwift */,
+				C7CDE7232A31695E0032BEE0 /* FirebaseMessaging */,
 			);
 			productName = TaiwanEEW;
 			productReference = B40038EC28743FAB0095D49F /* TaiwanEEW.app */;
@@ -299,10 +310,12 @@
 				C775E0DF28AE654700D34920 /* EventDispatcher.swift in Sources */,
 				C7AEEE3F29A0F951002471EF /* AlertStatusBar.swift in Sources */,
 				C7AEEE4329A37837002471EF /* NetworkMonitor.swift in Sources */,
+				C7CDE7282A318DD50032BEE0 /* SheetManager.swift in Sources */,
 				C775E0E628AF36D000D34920 /* Location.swift in Sources */,
 				C775E0D928AE63D000D34920 /* ConnectionStatusBar.swift in Sources */,
 				C766813F299BC98B00EE9D7C /* HistoryView.swift in Sources */,
 				C7668143299CDBBE00EE9D7C /* EventInfoBlock.swift in Sources */,
+				C7CDE7262A316CDF0032BEE0 /* FirstLaunchView.swift in Sources */,
 				C7953F1B29CF57E60003305B /* UIScreen.swift in Sources */,
 				B442768C2878720F00B57E92 /* SettingsView.swift in Sources */,
 				B40038F228743FAB0095D49F /* AlertView.swift in Sources */,
@@ -455,6 +468,7 @@
 				DEVELOPMENT_TEAM = XS4STNY663;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TaiwanEEW/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -488,6 +502,7 @@
 				DEVELOPMENT_TEAM = XS4STNY663;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TaiwanEEW/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -553,6 +568,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C775E0E028AE6EBE00D34920 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		C7CDE7232A31695E0032BEE0 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C775E0E028AE6EBE00D34920 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

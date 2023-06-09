@@ -17,6 +17,10 @@ struct TaiwanEEWApp: App {
     // selection variables accessable between views
     @AppStorage("historyRange") var historyRange: TimeRange = .year
     @AppStorage("subscribedLoc") var subscribedLoc: Location = .taipei
+    @StateObject var sheetManager = SheetManager()
+    @AppStorage("isFirstLaunch") var isFirstLaunch: Bool = true
+    
+    // TODO: fix
     
     init(){
         FirebaseApp.configure()
@@ -24,26 +28,36 @@ struct TaiwanEEWApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TabView {
-                AlertView(eventManager: EventDispatcher(subscribedLoc: $subscribedLoc), subscribedLoc: $subscribedLoc)
-                    .tabItem {
-                        Label("Alert", systemImage: "exclamationmark.triangle")
+            let _ = print("[Init] isFirstLaunch is currently \(isFirstLaunch)")
+            if isFirstLaunch {
+                FirstLaunchView(onDismiss: {
+                    withAnimation {
+                        isFirstLaunch = false
                     }
-                HistoryView(eventManager: EventDispatcher(subscribedLoc: $subscribedLoc), historyRange: $historyRange, subscribedLoc: $subscribedLoc)
-                    .tabItem {
-                        Label("History", systemImage: "chart.bar.doc.horizontal")
-                    }
-                SettingsView(
-                    onHistoryRangeChanged: { newValue in
-                    historyRange = newValue
-                }, onSubscribedLocChanged: {
-                    newValue in
-                    subscribedLoc = newValue
                 })
+            } else {
+                TabView {
+                    AlertView(eventManager: EventDispatcher(subscribedLoc: $subscribedLoc), subscribedLoc: $subscribedLoc)
+                        .environmentObject(sheetManager)
+                        .tabItem {
+                            Label("Alert", systemImage: "exclamationmark.triangle")
+                        }
+                    HistoryView(eventManager: EventDispatcher(subscribedLoc: $subscribedLoc), historyRange: $historyRange, subscribedLoc: $subscribedLoc)
+                        .tabItem {
+                            Label("History", systemImage: "chart.bar.doc.horizontal")
+                        }
+                    SettingsView(
+                        onHistoryRangeChanged: { newValue in
+                            historyRange = newValue
+                        }, onSubscribedLocChanged: {
+                            newValue in
+                            subscribedLoc = newValue
+                        })
                     .tabItem {
                         Label("Settings", systemImage: "gear")
                     }
-                
+                    
+                }
             }
             
         }

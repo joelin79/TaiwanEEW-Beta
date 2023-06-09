@@ -27,7 +27,8 @@ struct TimeBlock: View {
                         .font(Font.system(.largeTitle, design: .default).weight(.medium))
                     HStack(alignment: .bottom){
                         Text( (calcEstTime()>0) ? String(text) : "0")
-                            .font(.system(size: (calcEstTime()>99) ? 50 : 80, weight: .bold, design: .monospaced)).onReceive(
+                            .font(.system(size: (calcEstTime()>99) ? 50 : 80, weight: .bold, design: .monospaced))
+                            .onReceive(
                                 Timer.publish(every: 1, on: .main, in: .common).autoconnect(),
                                 perform: { _ in
                                     self.text = String(calcEstTime())

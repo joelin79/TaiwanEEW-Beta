@@ -13,6 +13,7 @@ struct AlertView: View {
     // binding from @main
 //    @Binding var historyRange: TimeRange
     @Binding var subscribedLoc: Location
+    @EnvironmentObject var sheetManager: SheetManager
     
     var publishedTime: Date {eventManager.publishedTime}
     var arrivalTime: Date {eventManager.arrivalTime}
@@ -23,6 +24,24 @@ struct AlertView: View {
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         return formatter
     }()
+    
+    var body: some View {
+        ZStack {
+            Rectangle().foregroundColor(Color("Background"))
+            //ConnectionStatusBar()
+            
+            VStack(alignment: .leading){
+                pageInfo
+                AlertStatusBar(arrivalTime: arrivalTime, intensity: intensity).offset(x:UIScreen.baseLine)
+                alertInfo
+                arrivalClockTimeBar.offset(x:UIScreen.baseLine)
+                Spacer()
+            }
+        }
+    }
+}
+
+private extension AlertView {
     
     var pageInfo: some View {
         Group {
@@ -61,22 +80,6 @@ struct AlertView: View {
             }
         }
     }
-    
-    
-    var body: some View {
-        ZStack {
-            Rectangle().foregroundColor(Color("Background"))
-            //ConnectionStatusBar()
-            
-            VStack(alignment: .leading){
-                pageInfo
-                AlertStatusBar(arrivalTime: arrivalTime, intensity: intensity).offset(x:UIScreen.baseLine)
-                alertInfo
-                arrivalClockTimeBar.offset(x:UIScreen.baseLine)
-                Spacer()
-            }
-        }
-    }
 }
 
 struct AlertView_Previews: PreviewProvider {
@@ -84,7 +87,9 @@ struct AlertView_Previews: PreviewProvider {
     
     static var previews: some View {
         AlertView(eventManager: EventDispatcher(subscribedLoc: $testLoc), subscribedLoc: $testLoc).environment(\.locale, Locale.init(identifier: "en"))
+            .environmentObject(SheetManager())
         
         AlertView(eventManager: EventDispatcher(subscribedLoc: $testLoc), subscribedLoc: $testLoc).environment(\.locale, Locale.init(identifier: "zh-Hant"))
+            .environmentObject(SheetManager())
     }
 }

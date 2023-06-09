@@ -27,8 +27,6 @@ class EventDispatcher: ObservableObject{
         getEvents()
     }
     
-    
-    
     func getEvents(){
         
         // listening the collection of the selected location
