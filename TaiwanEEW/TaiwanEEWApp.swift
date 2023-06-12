@@ -63,10 +63,13 @@ struct TaiwanEEWApp: App {
 // MARK: https://www.youtube.com/watch?v=TGOF8MqcAzY&ab_channel=DesignCode
 // MARK: https://designcode.io/swiftui-advanced-handbook-push-notifications-part-2
 
+
+
 class AppDelegate: NSObject, UIApplicationDelegate {
-    var pusher = NotificationManager()
     let gcmMessageIDKey = "gcm.message_id"
 
+/// Called when a remote notification is received while the app is running or in the background. The `userInfo` parameter contains the payload of the notification. In the provided code, the method prints the message ID and the content of the notification payload.
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         FirebaseApp.configure()
@@ -90,6 +93,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         return true
     }
+    
+/// Called when a notification is received while the app is in the foreground. It provides the option to customize the presentation of the notification. In the provided code, the method prints the message ID and the content of the notification payload and specifies the presentation options for the notification (banner, badge, sound).
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -103,15 +108,28 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 }
 
+
+
+
+
 extension AppDelegate: MessagingDelegate {
+    
+/// Called when the app receives a registration token from Firebase Cloud Messaging (FCM). The registration token is a unique identifier for the app installation, and it can be used to send notifications to the specific device. In the provided code, the method receives the registration token (`fcmToken`) and prints it.
+
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
       let deviceToken:[String: String] = ["token": fcmToken ?? ""]
         print("Device token: ", deviceToken) // This token can be used for testing notifications on FCM
     }
 }
 
+
+
+
+
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
+    
+///  Called when a notification is about to be presented to the user while the app is in the foreground. It provides an opportunity to customize the presentation options for the notification. In the provided code, the method prints the message ID and the content of the notification payload and specifies the presentation options for the notification
 
   // Receive displayed notifications for iOS 10 devices.
   func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -137,6 +155,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
     }
 
+    
+/// Called when a user interacts with a notification, such as tapping on it. In the provided code, the method prints the message ID and the content of the notification payload.
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
@@ -150,4 +170,5 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
     completionHandler()
   }
+    
 }
