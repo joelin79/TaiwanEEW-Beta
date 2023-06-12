@@ -15,6 +15,11 @@ struct AlertView: View {
     @Binding var subscribedLoc: Location
     @EnvironmentObject var sheetManager: SheetManager
     
+    // MARK: u1
+    @State var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    var pusher = NotificationManager()
+    var i = 0
+    
     var publishedTime: Date {eventManager.publishedTime}
     var arrivalTime: Date {eventManager.arrivalTime}
     var intensity: String {eventManager.intensity}
@@ -37,6 +42,15 @@ struct AlertView: View {
                 arrivalClockTimeBar.offset(x:UIScreen.baseLine)
                 Spacer()
             }
+            
+            // MARK: u1
+        }.onReceive(self.time) { (_) in
+            let currentDate = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm:ss"
+            let currentTimeString = dateFormatter.string(from: currentDate)
+            print("hi from alertview")
+            pusher.push("Test", currentTimeString)
         }
     }
 }

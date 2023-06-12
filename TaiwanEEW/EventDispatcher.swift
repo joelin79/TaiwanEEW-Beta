@@ -17,14 +17,14 @@ class EventDispatcher: ObservableObject{
     @Published private(set) var arrivalTime: Date = Date(timeIntervalSince1970: 0)
     @Published private(set) var publishedTime: Date = Date(timeIntervalSince1970: 0)
     @Published private(set) var intensity: String = "0"
-    
-    var subscribedLoc: Binding<Location>
-    
     let db = Firestore.firestore()
+    let pusher = NotificationManager()
+    var subscribedLoc: Binding<Location>
     
     init(subscribedLoc: Binding<Location>) {
         self.subscribedLoc = subscribedLoc
         getEvents()
+        updateAlert()       // MARK: u2
     }
     
     func getEvents(){
@@ -59,6 +59,15 @@ class EventDispatcher: ObservableObject{
                 self.publishedTime = lastEvent.eventTime
                 self.intensity = lastEvent.intensity
             }
+        }
+    }
+    
+    
+    // MARK: u2
+    func updateAlert(){
+        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            print("hi")
+            self.pusher.push("hi","hi")
         }
     }
     

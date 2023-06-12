@@ -9,6 +9,8 @@ target 'TaiwanEEW' do
 #  pod 'CocoaMQTT'
 
 pod 'FirebaseFirestore'
+pod 'FirebaseCore'
+pod 'Firebase/Messaging'
 
   
 end
