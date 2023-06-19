@@ -35,6 +35,7 @@
 		C7CDE7242A31695E0032BEE0 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C7CDE7232A31695E0032BEE0 /* FirebaseMessaging */; };
 		C7CDE7262A316CDF0032BEE0 /* FirstLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDE7252A316CDF0032BEE0 /* FirstLaunchView.swift */; };
 		C7CDE7282A318DD50032BEE0 /* SheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDE7272A318DD50032BEE0 /* SheetManager.swift */; };
+		C7E7759B2A402B3200A71346 /* NotifyThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E7759A2A402B3200A71346 /* NotifyThreshold.swift */; };
 		C7F73FCA29D18E090070265F /* ActiveStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F73FC929D18E090070265F /* ActiveStatusIndicator.swift */; };
 		C7F83460299E4B5E006E5953 /* EventError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F8345F299E4B5E006E5953 /* EventError.swift */; };
 		C7F83462299E5374006E5953 /* LocationBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F83461299E5374006E5953 /* LocationBlock.swift */; };
@@ -72,6 +73,7 @@
 		C7CDE7222A31678A0032BEE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C7CDE7252A316CDF0032BEE0 /* FirstLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchView.swift; sourceTree = "<group>"; };
 		C7CDE7272A318DD50032BEE0 /* SheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetManager.swift; sourceTree = "<group>"; };
+		C7E7759A2A402B3200A71346 /* NotifyThreshold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyThreshold.swift; sourceTree = "<group>"; };
 		C7F73FC929D18E090070265F /* ActiveStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveStatusIndicator.swift; sourceTree = "<group>"; };
 		C7F8345F299E4B5E006E5953 /* EventError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventError.swift; sourceTree = "<group>"; };
 		C7F83461299E5374006E5953 /* LocationBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBlock.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				C775E0E528AF36D000D34920 /* Location.swift */,
 				C7F8345F299E4B5E006E5953 /* EventError.swift */,
 				C7CC14B62A0B8D4D00D91D56 /* TimeRange.swift */,
+				C7E7759A2A402B3200A71346 /* NotifyThreshold.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				B40038F228743FAB0095D49F /* AlertView.swift in Sources */,
 				C775E0D528AE633300D34920 /* IntensityBlock.swift in Sources */,
 				B40038F028743FAB0095D49F /* TaiwanEEWApp.swift in Sources */,
+				C7E7759B2A402B3200A71346 /* NotifyThreshold.swift in Sources */,
 				C7423E672A36ABA2008B1020 /* NotificationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

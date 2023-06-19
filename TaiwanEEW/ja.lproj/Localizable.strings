@@ -25,6 +25,8 @@
 "alert-status-1-string" = "地震情報はありません";
 "alert-status-2-string" = "地 震 情 報";
 "alert-status-3-string" = "緊 急 地 震 速 報";
+"notify-pref-string" = "プッシュ通知";
+"notify-threshold-string" = "警報";
 
 // Intensity Block
 "intensity-string" = "推定震度";
@@ -59,3 +61,10 @@
 "sixmonth-string" = "6 月";
 "year-string" = "1 年";
 "all-string" = "すべて表示";
+
+// NotifyThreshold
+"eg0-string" = "震度0以上";
+"eg1-string" = "震度1以上";
+"eg2-string" = "震度2以上";
+"eg3-string" = "震度3以上";
+"eg4-string" = "震度4以上";

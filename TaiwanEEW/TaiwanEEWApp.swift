@@ -10,17 +10,25 @@
 import SwiftUI
 import Firebase
 import UserNotifications
+import BackgroundTasks
 
 
 @main
 struct TaiwanEEWApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @Environment(\.scenePhase) private var phase
+    let appRefreshInterval: TimeInterval = 10           // seconds
     
     // selection variables accessable between views
     @AppStorage("historyRange") var historyRange: TimeRange = .year
     @AppStorage("subscribedLoc") var subscribedLoc: Location = .taipei
     @StateObject var sheetManager = SheetManager()
     @AppStorage("isFirstLaunch") var isFirstLaunch: Bool = true
+    @AppStorage("notifyThreshold") var notifyThreshold: NotifyThreshold = .eg3
+    
+    init(){
+        FirebaseApp.configure()
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -36,7 +44,7 @@ struct TaiwanEEWApp: App {
                     AlertView(eventManager: EventDispatcher(subscribedLoc: $subscribedLoc), subscribedLoc: $subscribedLoc)
                         .environmentObject(sheetManager)
                         .tabItem {
-                            Label("Alert", systemImage: "exclamationmark.triangle")
+                            Label("Alert", systemImage: "exclamationmark.triangle")    // TODO: localization
                         }
                     HistoryView(eventManager: EventDispatcher(subscribedLoc: $subscribedLoc), historyRange: $historyRange, subscribedLoc: $subscribedLoc)
                         .tabItem {
@@ -45,41 +53,121 @@ struct TaiwanEEWApp: App {
                     SettingsView(
                         onHistoryRangeChanged: { newValue in
                             historyRange = newValue
-                        }, onSubscribedLocChanged: {
-                            newValue in
+                        }, onSubscribedLocChanged: { newValue in
                             subscribedLoc = newValue
+                        }, onNotifyThresholdChanged: { newValue in
+                            notifyThreshold = newValue
+                            setNotifyMode(threshold: notifyThreshold)
                         })
                     .tabItem {
                         Label("Settings", systemImage: "gear")
                     }
-                    
                 }
             }
-            
+        }
+    }
+    
+    func setNotifyMode(threshold: NotifyThreshold) {
+        
+        NotifyThreshold.allCases.forEach { topic in
+            Messaging.messaging().unsubscribe(fromTopic: topic.getTopicKey()) { error in
+                print("[Change] Unsubscribed to [\(topic.getTopicKey())] topic")
+            }
+        }
+        
+        switch threshold {
+        case .eg4:
+            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
+                print("[Change] Subscribed to [eg4] topic")
+            }
+            fallthrough
+        case .eg3:
+            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
+                print("[Change] Subscribed to [eg3] topic")
+            }
+            fallthrough
+        case .eg2:
+            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
+                print("[Change] Subscribed to [eg2] topic")
+            }
+            fallthrough
+        case .eg1:
+            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
+                print("[Change] Subscribed to [eg1] topic")
+            }
+            fallthrough
+        case .eg0:
+            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
+                print("[Change] Subscribed to [eg0] topic")
+            }
+        case .test:
+            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
+                print("[Change] Subscribed to [test] topic")
+            }
         }
     }
 }
 
+// MARK: Notification Handling
 // MARK: https://www.youtube.com/watch?v=TGOF8MqcAzY&ab_channel=DesignCode
 // MARK: https://designcode.io/swiftui-advanced-handbook-push-notifications-part-2
 
-
-
 class AppDelegate: NSObject, UIApplicationDelegate {
+    @AppStorage("notifyThreshold") var notifyThreshold: NotifyThreshold = .eg3 // (duplicate)
+    func seperate(){ print(); print("  -------- incoming notification --------")}
     let gcmMessageIDKey = "gcm.message_id"
-
-/// Called when a remote notification is received while the app is running or in the background. The `userInfo` parameter contains the payload of the notification. In the provided code, the method prints the message ID and the content of the notification payload.
     
+    // Subscribe to the selected and all preceding topics (duplicate)
+    func setNotifyMode(threshold: NotifyThreshold) {
+        
+        NotifyThreshold.allCases.forEach { topic in
+            Messaging.messaging().unsubscribe(fromTopic: topic.getTopicKey()) { error in
+                print("[Init] Unsubscribed to [\(topic.getTopicKey())] topic")
+            }
+        }
+        
+        switch threshold {
+        case .eg4:
+            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
+                print("[Init] Subscribed to [eg4] topic")
+            }
+            fallthrough
+        case .eg3:
+            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
+                print("[Init] Subscribed to [eg3] topic")
+            }
+            fallthrough
+        case .eg2:
+            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
+                print("[Init] Subscribed to [eg2] topic")
+            }
+            fallthrough
+        case .eg1:
+            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
+                print("[Init] Subscribed to [eg1] topic")
+            }
+            fallthrough
+        case .eg0:
+            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
+                print("[Init] Subscribed to [eg0] topic")
+            }
+        case .test:
+            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
+                print("[Init] Subscribed to [test] topic")
+            }
+        }
+    }
+    
+    // Called when a remote notification is received while the app is running or in the background
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        FirebaseApp.configure()
+        setNotifyMode(threshold: notifyThreshold)
 
         Messaging.messaging().delegate = self
-
         if #available(iOS 10.0, *) {
           // For iOS 10 display notification (sent via APNS)
           UNUserNotificationCenter.current().delegate = self
-
+            
           let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
           UNUserNotificationCenter.current().requestAuthorization(
             options: authOptions,
@@ -94,81 +182,85 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
     
-/// Called when a notification is received while the app is in the foreground. It provides the option to customize the presentation of the notification. In the provided code, the method prints the message ID and the content of the notification payload and specifies the presentation options for the notification (banner, badge, sound).
-
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-      if let messageID = userInfo[gcmMessageIDKey] {
-        print("Message ID: \(messageID)")
-      }
 
-      print(userInfo)
-
-      completionHandler(UIBackgroundFetchResult.newData)
+        // TODO: Handle data of notification
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        // Print message ID and full message
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        if !userInfo.isEmpty {
+            print("userInfo: \(userInfo) m1")
+        }
+        
+        completionHandler(UIBackgroundFetchResult.newData)
     }
 }
-
 
 
 
 
 extension AppDelegate: MessagingDelegate {
     
-/// Called when the app receives a registration token from Firebase Cloud Messaging (FCM). The registration token is a unique identifier for the app installation, and it can be used to send notifications to the specific device. In the provided code, the method receives the registration token (`fcmToken`) and prints it.
-
+    // Called when the app receives a registration token from Firebase Cloud Messaging (FCM)
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
       let deviceToken:[String: String] = ["token": fcmToken ?? ""]
         print("Device token: ", deviceToken) // This token can be used for testing notifications on FCM
     }
 }
 
-
-
-
-
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
     
-///  Called when a notification is about to be presented to the user while the app is in the foreground. It provides an opportunity to customize the presentation options for the notification. In the provided code, the method prints the message ID and the content of the notification payload and specifies the presentation options for the notification
+    // Called when a notification is about to be presented to the user while the app is in the foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        let userInfo = notification.request.content.userInfo
 
-  // Receive displayed notifications for iOS 10 devices.
-  func userNotificationCenter(_ center: UNUserNotificationCenter,
-                              willPresent notification: UNNotification,
-    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    let userInfo = notification.request.content.userInfo
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+          
+        // TODO: Use sound modification here
+        
+        // Print message ID and full message.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            seperate()
+            print("Message ID: \(messageID)")
+        }
+        if !userInfo.isEmpty {
+            print("userInfo: \(userInfo) m2")
+            print("  ----------------- end -----------------"); print()
+        }
 
-    if let messageID = userInfo[gcmMessageIDKey] {
-        print("Message ID: \(messageID)")
+        // Call the completion handler with options you want choosing type of notification
+        completionHandler([.banner, .badge, .sound])
     }
 
-    print(userInfo)
-
-    // Change this to your preferred presentation option
-    completionHandler([[.banner, .badge, .sound]])
-  }
-
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-
     }
 
-    
-/// Called when a user interacts with a notification, such as tapping on it. In the provided code, the method prints the message ID and the content of the notification payload.
-  func userNotificationCenter(_ center: UNUserNotificationCenter,
+    // Called when a user interacts with a notification, such as tapping on it
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
-    let userInfo = response.notification.request.content.userInfo
+      
+        let userInfo = response.notification.request.content.userInfo
+        
+        // Print message ID and full message.
+        if let messageID = userInfo[gcmMessageIDKey] {
+          print("Message ID from userNotificationCenter didReceive: \(messageID)")
+        }
+        print("userInfo: \(userInfo) m3")
 
-    if let messageID = userInfo[gcmMessageIDKey] {
-      print("Message ID from userNotificationCenter didReceive: \(messageID)")
-    }
-
-    print(userInfo)
-
-    completionHandler()
+        completionHandler()
   }
     
 }
