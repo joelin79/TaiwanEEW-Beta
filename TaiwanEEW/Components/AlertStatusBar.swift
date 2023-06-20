@@ -51,9 +51,9 @@ struct AlertStatusBar : View {
 
     private func updateAlert() {
         
-        // updates isInAlert (true before 5 seconds after wave arrival
+        // updates isInAlert (true before 10 seconds after wave arrival
         let now = Date()
-        let isInAlert = now.addingTimeInterval(TimeInterval(0-5)) < arrivalTime
+        let isInAlert = now.addingTimeInterval(TimeInterval(0-10)) < arrivalTime
         if isInAlert != isAlert {
             isAlert = isInAlert
             if isAlert {

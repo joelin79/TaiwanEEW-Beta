@@ -57,7 +57,7 @@ struct TaiwanEEWApp: App {
                             subscribedLoc = newValue
                         }, onNotifyThresholdChanged: { newValue in
                             notifyThreshold = newValue
-                            setNotifyMode(threshold: notifyThreshold)
+                            FCMManager.setNotifyMode(threshold: notifyThreshold)
                         })
                     .tabItem {
                         Label("Settings", systemImage: "gear")
@@ -67,45 +67,7 @@ struct TaiwanEEWApp: App {
         }
     }
     
-    func setNotifyMode(threshold: NotifyThreshold) {
-        
-        NotifyThreshold.allCases.forEach { topic in
-            Messaging.messaging().unsubscribe(fromTopic: topic.getTopicKey()) { error in
-                print("[Change] Unsubscribed to [\(topic.getTopicKey())] topic")
-            }
-        }
-        
-        switch threshold {
-        case .eg4:
-            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
-                print("[Change] Subscribed to [eg4] topic")
-            }
-            fallthrough
-        case .eg3:
-            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
-                print("[Change] Subscribed to [eg3] topic")
-            }
-            fallthrough
-        case .eg2:
-            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
-                print("[Change] Subscribed to [eg2] topic")
-            }
-            fallthrough
-        case .eg1:
-            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
-                print("[Change] Subscribed to [eg1] topic")
-            }
-            fallthrough
-        case .eg0:
-            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
-                print("[Change] Subscribed to [eg0] topic")
-            }
-        case .test:
-            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
-                print("[Change] Subscribed to [test] topic")
-            }
-        }
-    }
+    
 }
 
 // MARK: Notification Handling
@@ -117,52 +79,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func seperate(){ print(); print("  -------- incoming notification --------")}
     let gcmMessageIDKey = "gcm.message_id"
     
-    // Subscribe to the selected and all preceding topics (duplicate)
-    func setNotifyMode(threshold: NotifyThreshold) {
-        
-        NotifyThreshold.allCases.forEach { topic in
-            Messaging.messaging().unsubscribe(fromTopic: topic.getTopicKey()) { error in
-                print("[Init] Unsubscribed to [\(topic.getTopicKey())] topic")
-            }
-        }
-        
-        switch threshold {
-        case .eg4:
-            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
-                print("[Init] Subscribed to [eg4] topic")
-            }
-            fallthrough
-        case .eg3:
-            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
-                print("[Init] Subscribed to [eg3] topic")
-            }
-            fallthrough
-        case .eg2:
-            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
-                print("[Init] Subscribed to [eg2] topic")
-            }
-            fallthrough
-        case .eg1:
-            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
-                print("[Init] Subscribed to [eg1] topic")
-            }
-            fallthrough
-        case .eg0:
-            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
-                print("[Init] Subscribed to [eg0] topic")
-            }
-        case .test:
-            Messaging.messaging().subscribe(toTopic: notifyThreshold.getTopicKey()) { error in
-                print("[Init] Subscribed to [test] topic")
-            }
-        }
-    }
-    
     // Called when a remote notification is received while the app is running or in the background
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        setNotifyMode(threshold: notifyThreshold)
-
+        FCMManager.setNotifyMode(threshold: notifyThreshold)
+        
         Messaging.messaging().delegate = self
         if #available(iOS 10.0, *) {
           // For iOS 10 display notification (sent via APNS)
@@ -263,4 +184,46 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         completionHandler()
   }
     
+}
+
+class FCMManager {
+    static func setNotifyMode(threshold: NotifyThreshold) {
+        
+        NotifyThreshold.allCases.forEach { topic in
+            Messaging.messaging().unsubscribe(fromTopic: topic.getTopicKey()) { error in
+                print("[FCM] Unsubscribed to [\(topic.getTopicKey())] topic")
+            }
+        }
+        
+        switch threshold {
+        case .eg0:
+            Messaging.messaging().subscribe(toTopic: NotifyThreshold.eg0.getTopicKey()) { error in
+                print("[FCM] Subscribed to [eg0] topic")
+            }
+            fallthrough
+        case .eg1:
+            Messaging.messaging().subscribe(toTopic: NotifyThreshold.eg1.getTopicKey()) { error in
+                print("[FCM] Subscribed to [eg1] topic")
+            }
+            fallthrough
+        case .eg2:
+            Messaging.messaging().subscribe(toTopic: NotifyThreshold.eg2.getTopicKey()) { error in
+                print("[FCM] Subscribed to [eg2] topic")
+            }
+            fallthrough
+        case .eg3:
+            Messaging.messaging().subscribe(toTopic: NotifyThreshold.eg3.getTopicKey()) { error in
+                print("[FCM] Subscribed to [eg3] topic")
+            }
+            fallthrough
+        case .eg4:
+            Messaging.messaging().subscribe(toTopic: NotifyThreshold.eg4.getTopicKey()) { error in
+                print("[FCM] Subscribed to [eg4] topic")
+            }
+        case .test:
+            Messaging.messaging().subscribe(toTopic: NotifyThreshold.test.getTopicKey()) { error in
+                print("[FCM] Subscribed to [test] topic")
+            }
+        }
+    }
 }
