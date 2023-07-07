@@ -79,10 +79,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func seperate(){ print(); print("  -------- incoming notification --------")}
     let gcmMessageIDKey = "gcm.message_id"
     
+    // Called when a remote notification is received while the app is running or in the background
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         FCMManager.setNotifyMode(threshold: notifyThreshold)
         
+        Messaging.messaging().delegate = self
         if #available(iOS 10.0, *) {
           // For iOS 10 display notification (sent via APNS)
           UNUserNotificationCenter.current().delegate = self
@@ -98,7 +100,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
 
         application.registerForRemoteNotifications()
-        Messaging.messaging().delegate = self
         return true
     }
     
@@ -162,8 +163,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("Yay! Got a device token 🥳 \(deviceToken)")
-        Messaging.messaging().setAPNSToken(deviceToken, type: .unknown)
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
