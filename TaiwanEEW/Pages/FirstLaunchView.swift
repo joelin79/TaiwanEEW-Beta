@@ -86,19 +86,34 @@ private extension FirstLaunchView {
                .padding(.top, 20)
     }
 
+//    var close: some View {
+//        Button {
+//            onDismiss()
+//        } label: {
+//            Text("dismiss-string")
+//                .font(.system(size: 20, weight: .bold))
+//        }
+//        .padding()
+//        .frame(maxWidth: .infinity)
+//        .foregroundColor(.white)
+//        .background(.blue)
+//        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+//        .padding(.top, 50)
+//    }
+    
     var close: some View {
-        Button {
+        Button(action: {
             onDismiss()
-        } label: {
+        }) {
             Text("dismiss-string")
                 .font(.system(size: 20, weight: .bold))
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .padding(.top, 50)
         }
-        .padding()
-        .frame(maxWidth: .infinity)
-        .foregroundColor(.white)
-        .background(.blue)
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .padding(.top, 50)
     }
 
 //    var background: some View {
