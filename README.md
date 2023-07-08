@@ -28,10 +28,11 @@ Taiwan EEW 是一款 iOS 地震速報軟體，提供給您即時的地震資訊�
 ## 特別感謝
 - joelin79 `程式開發`
 - 地牛 Wake Up `速報提供`
-- JQuake `音效`
+- NTT DOCOMO `通知音效`
 
 ## 如何貢獻
 點擊 [Repo](https://github.com/joelin79/taiwanEEW) 主頁右上角的 Code 按鈕後點擊 Download ZIP 來下載原始碼壓縮檔\
 或是使用 `git clone` 指令來複製一份原始碼到你的電腦上\
+使用最新版本的 [Xcode](https://developer.apple.com/xcode/resources/) 打開`TaiwanEEW.xcworkspace`開始編輯～
 修改變更後開啟 [Pull Request](https://github.com/joelin79/taiwanEEW/pulls) 來把你的變更合併到我們下一次的更新裡面 :D
 
