@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AlertStatusBar : View {
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     var arrivalTime: Date
     var intensity: String
     @State private var opacity: Double = 1

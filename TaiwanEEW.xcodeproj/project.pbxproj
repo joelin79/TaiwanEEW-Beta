@@ -32,6 +32,8 @@
 		C7AEEE4129A0FDC3002471EF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AEEE4029A0FDC3002471EF /* UIView.swift */; };
 		C7AEEE4329A37837002471EF /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AEEE4229A37837002471EF /* NetworkMonitor.swift */; };
 		C7CC14B72A0B8D4D00D91D56 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CC14B62A0B8D4D00D91D56 /* TimeRange.swift */; };
+		C7CD703A2A593AB4008D04F9 /* minor.wav in Resources */ = {isa = PBXBuildFile; fileRef = C7CD70382A593AB4008D04F9 /* minor.wav */; };
+		C7CD703B2A593AB4008D04F9 /* major.wav in Resources */ = {isa = PBXBuildFile; fileRef = C7CD70392A593AB4008D04F9 /* major.wav */; };
 		C7CDE7242A31695E0032BEE0 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C7CDE7232A31695E0032BEE0 /* FirebaseMessaging */; };
 		C7CDE7262A316CDF0032BEE0 /* FirstLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDE7252A316CDF0032BEE0 /* FirstLaunchView.swift */; };
 		C7CDE7282A318DD50032BEE0 /* SheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDE7272A318DD50032BEE0 /* SheetManager.swift */; };
@@ -70,6 +72,8 @@
 		C7AEEE4029A0FDC3002471EF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		C7AEEE4229A37837002471EF /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		C7CC14B62A0B8D4D00D91D56 /* TimeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
+		C7CD70382A593AB4008D04F9 /* minor.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = minor.wav; sourceTree = "<group>"; };
+		C7CD70392A593AB4008D04F9 /* major.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = major.wav; sourceTree = "<group>"; };
 		C7CDE7222A31678A0032BEE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C7CDE7252A316CDF0032BEE0 /* FirstLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchView.swift; sourceTree = "<group>"; };
 		C7CDE7272A318DD50032BEE0 /* SheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetManager.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 		B40038EE28743FAB0095D49F /* TaiwanEEW */ = {
 			isa = PBXGroup;
 			children = (
+				C7CD70392A593AB4008D04F9 /* major.wav */,
+				C7CD70382A593AB4008D04F9 /* minor.wav */,
 				C793620C2A35E09100AA583C /* TaiwanEEW.entitlements */,
 				C7CDE7222A31678A0032BEE0 /* Info.plist */,
 				C7423E662A36ABA2008B1020 /* NotificationManager.swift */,
@@ -268,7 +274,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7CD703B2A593AB4008D04F9 /* major.wav in Resources */,
 				B40038F728743FAF0095D49F /* Preview Assets.xcassets in Resources */,
+				C7CD703A2A593AB4008D04F9 /* minor.wav in Resources */,
 				C71071862A1EEAFD00C1695F /* Localizable.strings in Resources */,
 				B40038F428743FAF0095D49F /* Assets.xcassets in Resources */,
 				B4EBD1A1289F9B0800A8ABD9 /* GoogleService-Info.plist in Resources */,
@@ -474,7 +482,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TaiwanEEW/TaiwanEEW.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TaiwanEEW/Preview Content\"";
 				DEVELOPMENT_TEAM = M68BL5D7KU;
 				ENABLE_PREVIEWS = YES;
@@ -493,7 +501,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joedev.TaiwanEEW;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -510,7 +518,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TaiwanEEW/TaiwanEEW.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TaiwanEEW/Preview Content\"";
 				DEVELOPMENT_TEAM = M68BL5D7KU;
 				ENABLE_PREVIEWS = YES;
@@ -529,7 +537,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joedev.TaiwanEEW;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
