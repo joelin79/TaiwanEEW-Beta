@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// TODO: information stuff
+
 struct SettingsView: View {
     @AppStorage("locSelection") var locSelection: Location = .taipei
     @AppStorage("HRSelection") var HRSelection: TimeRange = .year
