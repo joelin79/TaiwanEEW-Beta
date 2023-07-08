@@ -23,6 +23,7 @@ Taiwan EEW 是一款 iOS 地震速報軟體，提供給您即時的地震資訊�
 
 ## 載點
 - [iOS TestFlight (Beta版)](https://testflight.apple.com/join/wKYJpbYM)
+- *iOS App Store (正式版) **敬請期待***
 
 ## 特別感謝
 - joelin79 `程式開發`
