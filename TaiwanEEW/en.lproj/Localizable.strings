@@ -63,6 +63,7 @@
 "all-string" = "All";
 
 // NotifyThreshold
+"off-string" = "Off";
 "eg0-string" = "Intensity 0 or above";
 "eg1-string" = "Intensity 1 or above";
 "eg2-string" = "Intensity 2 or above";
