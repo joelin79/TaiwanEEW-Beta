@@ -446,8 +446,13 @@
             filePath = "TaiwanEEW/Pages/SettingsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "68"
             endingLineNumber = "68"
+=======
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+>>>>>>> parent of 295bfd5 (Update: add "off" option for alerts)
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>

@@ -482,7 +482,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TaiwanEEW/TaiwanEEW.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				CURRENT_PROJECT_VERSION = 8;
+=======
+				CURRENT_PROJECT_VERSION = 6;
+>>>>>>> parent of 295bfd5 (Update: add "off" option for alerts)
 				DEVELOPMENT_ASSET_PATHS = "\"TaiwanEEW/Preview Content\"";
 				DEVELOPMENT_TEAM = M68BL5D7KU;
 				ENABLE_PREVIEWS = YES;
@@ -521,7 +525,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TaiwanEEW/TaiwanEEW.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				CURRENT_PROJECT_VERSION = 8;
+=======
+				CURRENT_PROJECT_VERSION = 6;
+>>>>>>> parent of 295bfd5 (Update: add "off" option for alerts)
 				DEVELOPMENT_ASSET_PATHS = "\"TaiwanEEW/Preview Content\"";
 				DEVELOPMENT_TEAM = M68BL5D7KU;
 				ENABLE_PREVIEWS = YES;

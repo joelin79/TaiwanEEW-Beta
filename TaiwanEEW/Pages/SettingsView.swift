@@ -53,6 +53,7 @@ struct SettingsView: View {
                     }.onChange(of: HRSelection) { value in
                         onHistoryRangeChanged?(value)
                     }
+                    // Notification Selection TODO: localization
                     Section(header: Text("notify-pref-string")){
                         List {
                             Picker("notify-threshold-string", selection: $notifySelection){

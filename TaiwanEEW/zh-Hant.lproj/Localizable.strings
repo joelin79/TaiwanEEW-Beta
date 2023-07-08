@@ -63,7 +63,6 @@
 "all-string" = "全部";
 
 // NotifyThreshold
-"off-string" = "關閉";
 "eg0-string" = "震度0以上";
 "eg1-string" = "震度1以上";
 "eg2-string" = "震度2以上";
