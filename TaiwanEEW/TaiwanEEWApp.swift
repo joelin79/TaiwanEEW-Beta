@@ -25,10 +25,6 @@ struct TaiwanEEWApp: App {
     @StateObject var sheetManager = SheetManager()
     @AppStorage("isFirstLaunch") var isFirstLaunch: Bool = true
     @AppStorage("notifyThreshold") var notifyThreshold: NotifyThreshold = .eg3
-    
-//    init(){
-//        FirebaseApp.configure()
-//    }
 
     var body: some Scene {
         WindowGroup {
@@ -74,11 +70,19 @@ struct TaiwanEEWApp: App {
 // MARK: https://www.youtube.com/watch?v=TGOF8MqcAzY&ab_channel=DesignCode
 // MARK: https://designcode.io/swiftui-advanced-handbook-push-notifications-part-2
 class AppDelegate: NSObject, UIApplicationDelegate {
+    @AppStorage("notifyThreshold") var notifyThreshold: NotifyThreshold = .eg3          // (duplicate)
+    @AppStorage("isFirstLaunch") var isFirstLaunch: Bool = true                         // (duplicate)
+    func seperate(){ print(); print("  -------- incoming notification --------")}       // for debugging only
+    
     let gcmMessageIDKey = "gcm.message_id"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
-
+        
+        if isFirstLaunch {
+            FCMManager.setNotifyMode(threshold: notifyThreshold)                    // topic subscription on first launch (default: eg3)
+        }
+        
         Messaging.messaging().delegate = self
 
         if #available(iOS 10.0, *) {
@@ -116,7 +120,7 @@ extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
 
       let deviceToken:[String: String] = ["token": fcmToken ?? ""]
-        print("Device token: ", deviceToken) // This token can be used for testing notifications on FCM
+        print("Device token: ", deviceToken)                                  // This token can be used for testing notifications on FCM
     }
 }
 
@@ -129,7 +133,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
     let userInfo = notification.request.content.userInfo
 
+    // Print message ID and full message.
     if let messageID = userInfo[gcmMessageIDKey] {
+        seperate()                                                          // for debugging use only
         print("Message ID: \(messageID)")
     }
 
@@ -163,6 +169,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 }
 
 
+
+// Topic subscription management
 class FCMManager {
     static func setNotifyMode(threshold: NotifyThreshold) {
         
