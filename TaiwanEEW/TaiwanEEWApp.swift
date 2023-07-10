@@ -190,8 +190,10 @@ class FCMManager {
     static func setNotifyMode(threshold: NotifyThreshold) {
         
         NotifyThreshold.allCases.forEach { topic in
-            Messaging.messaging().unsubscribe(fromTopic: topic.getTopicKey()) { error in
-                print("[FCM] Unsubscribed to [\(topic.getTopicKey())] topic")
+            if topic != .eg4 {
+                Messaging.messaging().unsubscribe(fromTopic: topic.getTopicKey()) { error in
+                    print("[FCM] Unsubscribed to [\(topic.getTopicKey())] topic")
+                }
             }
         }
         
