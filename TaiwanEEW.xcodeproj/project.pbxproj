@@ -19,6 +19,7 @@
 		C7668141299C942800EE9D7C /* TestText.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7668140299C942700EE9D7C /* TestText.swift */; };
 		C7668143299CDBBE00EE9D7C /* EventInfoBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7668142299CDBBE00EE9D7C /* EventInfoBlock.swift */; };
 		C770E6FD2A5C0E1D001962E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C770E6FC2A5C0E1D001962E2 /* GoogleService-Info.plist */; };
+		C770E6FF2A5C16B9001962E2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C770E6FE2A5C16B9001962E2 /* FirebaseAnalytics */; };
 		C775E0D528AE633300D34920 /* IntensityBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C775E0D428AE633300D34920 /* IntensityBlock.swift */; };
 		C775E0D728AE637400D34920 /* TimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C775E0D628AE637400D34920 /* TimeBlock.swift */; };
 		C775E0D928AE63D000D34920 /* ConnectionStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C775E0D828AE63D000D34920 /* ConnectionStatusBar.swift */; };
@@ -92,6 +93,7 @@
 				C7CDE7242A31695E0032BEE0 /* FirebaseMessaging in Frameworks */,
 				0C43DFA9D773C19DBB232266 /* Pods_TaiwanEEW.framework in Frameworks */,
 				C775E0E228AE6EBE00D34920 /* FirebaseFirestore in Frameworks */,
+				C770E6FF2A5C16B9001962E2 /* FirebaseAnalytics in Frameworks */,
 				C775E0E428AE6EBE00D34920 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,6 +228,7 @@
 				C775E0E128AE6EBE00D34920 /* FirebaseFirestore */,
 				C775E0E328AE6EBE00D34920 /* FirebaseFirestoreSwift */,
 				C7CDE7232A31695E0032BEE0 /* FirebaseMessaging */,
+				C770E6FE2A5C16B9001962E2 /* FirebaseAnalytics */,
 			);
 			productName = TaiwanEEW;
 			productReference = B40038EC28743FAB0095D49F /* TaiwanEEW.app */;
@@ -585,6 +588,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C770E6FE2A5C16B9001962E2 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C775E0E028AE6EBE00D34920 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
 		C775E0E128AE6EBE00D34920 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C775E0E028AE6EBE00D34920 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
