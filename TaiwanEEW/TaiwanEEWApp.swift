@@ -15,7 +15,7 @@ import BackgroundTasks
 
 @main
 struct TaiwanEEWApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+//    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) private var phase
     let appRefreshInterval: TimeInterval = 10           // seconds
     
@@ -74,117 +74,6 @@ struct TaiwanEEWApp: App {
 // MARK: https://www.youtube.com/watch?v=TGOF8MqcAzY&ab_channel=DesignCode
 // MARK: https://designcode.io/swiftui-advanced-handbook-push-notifications-part-2
 
-class AppDelegate: NSObject, UIApplicationDelegate {
-    @AppStorage("notifyThreshold") var notifyThreshold: NotifyThreshold = .eg3 // (duplicate)
-    func seperate(){ print(); print("  -------- incoming notification --------")}
-    let gcmMessageIDKey = "gcm.message_id"
-    
-    // Called when a remote notification is received while the app is running or in the background
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        
-        FCMManager.setNotifyMode(threshold: notifyThreshold)
-        
-        Messaging.messaging().delegate = self
-        if #available(iOS 10.0, *) {
-          // For iOS 10 display notification (sent via APNS)
-          UNUserNotificationCenter.current().delegate = self
-            
-          let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-          UNUserNotificationCenter.current().requestAuthorization(
-            options: authOptions,
-            completionHandler: {_, _ in })
-        } else {
-          let settings: UIUserNotificationSettings =
-          UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-          application.registerUserNotificationSettings(settings)
-        }
-
-        application.registerForRemoteNotifications()
-        return true
-    }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-
-        // TODO: Handle data of notification
-        
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        
-        // Print message ID and full message
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        if !userInfo.isEmpty {
-            print("userInfo: \(userInfo) m1")
-        }
-        
-        completionHandler(UIBackgroundFetchResult.newData)
-    }
-}
-
-
-
-
-extension AppDelegate: MessagingDelegate {
-    
-    // Called when the app receives a registration token from Firebase Cloud Messaging (FCM)
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-      let deviceToken:[String: String] = ["token": fcmToken ?? ""]
-        print("Device token: ", deviceToken) // This token can be used for testing notifications on FCM
-    }
-}
-
-@available(iOS 10, *)
-extension AppDelegate : UNUserNotificationCenterDelegate {
-    
-    // Called when a notification is about to be presented to the user while the app is in the foreground
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
-        let userInfo = notification.request.content.userInfo
-
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-          
-        // TODO: Use sound modification here
-        
-        // Print message ID and full message.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            seperate()
-            print("Message ID: \(messageID)")
-        }
-        if !userInfo.isEmpty {
-            print("userInfo: \(userInfo) m2")
-            print("  ----------------- end -----------------"); print()
-        }
-
-        // Call the completion handler with options you want choosing type of notification
-        completionHandler([.banner, .badge, .sound])
-    }
-
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-    }
-
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-    }
-
-    // Called when a user interacts with a notification, such as tapping on it
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                              didReceive response: UNNotificationResponse,
-                              withCompletionHandler completionHandler: @escaping () -> Void) {
-      
-        let userInfo = response.notification.request.content.userInfo
-        
-        // Print message ID and full message.
-        if let messageID = userInfo[gcmMessageIDKey] {
-          print("Message ID from userNotificationCenter didReceive: \(messageID)")
-        }
-        print("userInfo: \(userInfo) m3")
-
-        completionHandler()
-  }
-    
-}
 
 class FCMManager {
     static func setNotifyMode(threshold: NotifyThreshold) {
