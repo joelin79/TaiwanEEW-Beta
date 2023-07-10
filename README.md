@@ -2,7 +2,7 @@
 
 
 # Taiwan Early Earthquake Warning (EEW)
-台灣地震速報
+台灣地震速報（Beta 版本）
 
 ## 關於 Taiwan EEW
 Taiwan EEW 是一款 iOS 地震速報軟體，提供給您即時的地震資訊，在地震發生的第一時間取得強震即時警報訊息
