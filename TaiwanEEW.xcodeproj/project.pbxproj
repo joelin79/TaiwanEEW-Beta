@@ -139,10 +139,8 @@
 		B40038EE28743FAB0095D49F /* TaiwanEEW */ = {
 			isa = PBXGroup;
 			children = (
-				C770E6FC2A5C0E1D001962E2 /* GoogleService-Info.plist */,
-				C7CD70392A593AB4008D04F9 /* major.wav */,
-				C7CD70382A593AB4008D04F9 /* minor.wav */,
 				C793620C2A35E09100AA583C /* TaiwanEEW.entitlements */,
+				C770E6FC2A5C0E1D001962E2 /* GoogleService-Info.plist */,
 				C7CDE7222A31678A0032BEE0 /* Info.plist */,
 				C7423E662A36ABA2008B1020 /* NotificationManager.swift */,
 				B40038EF28743FAB0095D49F /* TaiwanEEWApp.swift */,
@@ -153,6 +151,8 @@
 				C775E0D328AE629600D34920 /* Components */,
 				C775E0DC28AE64E100D34920 /* Models */,
 				B40038F328743FAF0095D49F /* Assets.xcassets */,
+				C7CD70382A593AB4008D04F9 /* minor.wav */,
+				C7CD70392A593AB4008D04F9 /* major.wav */,
 				B40038F528743FAF0095D49F /* Preview Content */,
 				C71071882A1EEAFD00C1695F /* Localizable.strings */,
 			);
